@@ -9,7 +9,7 @@
 		
 		function __construct() {
 			$this->userIdLower = 1;
-			$this->userIdUpper = 101;
+			$this->userIdUpper = 2000;
 		}
 
 		function createUserInfo() {

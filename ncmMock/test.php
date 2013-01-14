@@ -1,7 +1,11 @@
 ﻿<?php
+require_once 'model/Tool.class.php';
 //文件重命名脚本
 // $a=array("a"=>"Dog","b"=>"Cat","c"=>"Horse");
-echo stripslashes("http:\/\/172.18.43.151\/ncmMock\/img\/avatar\/m51.gif");
+$a1=array(1 , 3);
+$a2=array(2, 4);
+print_r(array_merge($a1,$a2));
+
 // $a1=array(0=>"Cat",1=>"Dog",2=>"Horse");
 // $a2=array(1=>"Bird",3=>"Rat",4=>"Fish");
 // $a3=array(5=>"Horse",6=>"Dog",7=>"Bird");

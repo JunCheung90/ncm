@@ -1,5 +1,6 @@
 ﻿<?php
   require_once("model/Story.class.php");
+  require_once("model/Tool.class.php");
   $story = new Story();
   $result = $story->userStory1();
   $contacts = $result->Contacts;
@@ -8,13 +9,24 @@
    //统计，20%重复（80%手机，20%Email）70%有电话号码，5%有IM，3%有SN；5%从不联系，15%频繁联系
   //合并权重
   $mergeWeightArr = $result->MergeWeight;
+  $highMergeNum = 0;
+  $lowMergeNum = 0;
+  for ($i = 0; $i < count($mergeWeightArr); $i++) {
+      $contactPair = $mergeWeightArr[$i];
+      $weight = $contactPair->weight;
+      if ($weight == 2)
+        $highMergeNum+=2;
+      if ($weight == 1)
+        $lowMergeNum+=2;
+  }
+  
   function getContactById($contacts, $id) {
     return $contacts[$id-10000];
   }
 
   //分页模块
   define('SCRIPT', 'contact');
-  define('PAGE_COUNT', 50);
+  define('PAGE_COUNT', 200);
 
   function pager ($pageType, $arr) {
     if (isset($_GET[$pageType])) {
@@ -109,9 +121,9 @@
    
         <div id="content">
           <section class="stat-info">
-            <p class="info0 ">豆豆，在你的<span>101</span>个联系人里有<span>2</span>个是同一个人哦!</p>
-            <p class="info1 hidden">再找找下面的<span>20</span>个人，或许是重复的呢!</p>
-            <p class="info2 hidden">嘻嘻，这就是你的全部<span>101</span>个联系人</p>
+            <p class="info0 ">豆豆，在你的<span><?=$contactsNum?></span>个联系人里有<span><?= $highMergeNum ?></span>个是同一个人哦!</p>
+            <p class="info1 hidden">再找找下面的<span><?= $lowMergeNum ?></span>个人，或许是重复的呢!</p>
+            <p class="info2 hidden">嘻嘻，这就是你的全部<span><?=$contactsNum?></span>个联系人</p>
           </section>
 
           <section class="contact-table">
@@ -141,10 +153,17 @@
                       $contact1 = getContactById($contacts, $contactPair->contactId1);
                       $contact2 = getContactById($contacts, $contactPair->contactId2);
                       $weight = $contactPair->weight;
+                      if ($weight == 2)
+                        $highMergeNum++;
+                      if ($weight == 1)
+                        $lowMergeNum++;
+                      $nameArr = ['王青', '向帆', '王浩', '万伟祥', '方慧', '黄东敏', '黄泽腾', '陈伯冰', '何盈', '张杰军', '刘日辉', '徐总', '向董', '王老师', 'YoYo兔','徐总','徐总'];
+                      $name1 = Tool::randomPercentage() < 0.4 ? Tool::randomInArray($nameArr) : $story->getName($contact1);
+                      $name2 = Tool::randomPercentage() < 0.3 ? Tool::randomInArray($nameArr) : $story->getName($contact2);
                   ?>
                   <tr>
                     <td><?= $story->getId($contact1) ?></td>
-                    <td><?= $story->getName($contact1) ?></td>
+                    <td><?= $name1 ?></td>
                     <td><?= $story->getMobilePhone($contact1) ?></td>
                     <td><?= $story->getHomePhone($contact1) ?></td>
                     <td><?= $story->getEmail($contact1) ?></td>
@@ -155,7 +174,7 @@
                   </tr>
                   <tr>
                     <td><?= $story->getId($contact2) ?></td>
-                    <td><?= $story->getName($contact2) ?></td>
+                    <td><?= $name2 ?></td>
                     <td><?= $story->getMobilePhone($contact2) ?></td>
                     <td><?= $story->getHomePhone($contact2) ?></td>
                     <td><?= $story->getEmail($contact2) ?></td>
@@ -181,10 +200,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                  <?php for ($i = 0; $i < count($contactsArrTmp); $i++) {?>
+                  <?php for ($i = 0; $i < count($contactsArrTmp); $i++) {
+                    $name3 = Tool::randomPercentage() < 0.4 ? Tool::randomInArray($nameArr) : $story->getName($contactsArrTmp[$i]);
+                   ?>
                   <tr>
                     <td><?= $contactsArrTmp[$i]->id ?></td>
-                    <td><?= $contactsArrTmp[$i]->StructuredName->DISPLAY_NAME ?></td>
+                    <td><?= $name3 ?></td>
                     <td><?= $contactsArrTmp[$i]->Phone[0]->NUMBER ?></td>
                     <td><?= $contactsArrTmp[$i]->Phone[1]->NUMBER ?></td>
                     <td><?= $contactsArrTmp[$i]->Email[0]->ADDRESS ?></td>

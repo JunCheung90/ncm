@@ -126,10 +126,10 @@ function sortTableInOrder(table, column, isAscend){
     appendRows(table, rows);
 
     //重置首列
-    var jq_trs = $('.sortTable>tbody>tr');
-    for (var i=0; i<jq_trs.length; i++) {
-        $(jq_trs[i]).find('td:eq(0)').text(i+1);
-    }
+    // var jq_trs = $('.sortTable>tbody>tr');
+    // for (var i=0; i<jq_trs.length; i++) {
+    //     $(jq_trs[i]).find('td:eq(0)').text(i+1);
+    // }
 }
 
 

@@ -11,7 +11,7 @@
 		
 		function __construct() {
 			$this->userIdLower = 10000;
-			$this->userIdUpper = 10100;
+			$this->userIdUpper = 11020;
 			$this->userTotal = $this->userIdUpper - $this->userIdLower;
 		}
 
@@ -224,7 +224,7 @@
 			$emailPool = array();
 			$userInfos = $user->getUserInfoBatch($userPoolIdLower, $userPoolIdUpper);
 
-			for ($i = $userPoolIdLower; $i <= $userPoolIdUpper; $i++) {
+			for ($i = $userPoolIdLower; $i <= $userPoolIdLower + $this->userTotal; $i++) {
 				$userInfoTmp = $userInfos[$i];
 				$userPool[] = $userInfoTmp;
 				$phoneNumberPool[] = $userInfoTmp->Phone[0]->NUMBER;
@@ -232,45 +232,35 @@
 				$namePool[] = $userInfoTmp->StructuredName->DISPLAY_NAME;
 				$emailPool[] = $userInfoTmp->Email[0]->ADDRESS;
 			}
+			//重复信息
+			$this->repeatEleInArr($namePool, 0.05*0.05);
+			$this->repeatEleInArr($phoneNumberPool, 0.05*0.75*0.7);
+			$this->repeatEleInArr($homeNumberPool, 0.05*0.75*0.3);
+			$this->repeatEleInArr($emailPool, 0.05*0.2);
 
 			//target user pool
 			$targetUsers = array();
+			$targetPhoneArr = array();
+			$targetNameArr = array();
 			for ($j = 0; $j < $this->userTotal; $j++) {
 				$originalUserInfo = $userPool[$j];
 
 				$userInfo = $user->createUserInfo();
 				$userInfo->id = $j + $this->userIdLower;
-				$userInfo->StructuredName->DISPLAY_NAME = $namePool[$j];
+				$targetNameArr[] = $userInfo->StructuredName->DISPLAY_NAME = $namePool[$j];
 				$userInfo->Photo->PHOTO = stripslashes($originalUserInfo->Photo->PHOTO);
-				//20%重复联系人，80%重复号码（70%重复手机，30%重复电话），20%重复email
+				//30%重复联系人，80%重复号码（70%重复手机，30%重复电话），20%重复email
 				$phone = $user->createPhone();
 				//MOBILE PHONE
 				$phone->TYPE = 2;
-				
-				if (Tool::randomPercentage() < 0.2*0.8*0.7) {
-					$phone->NUMBER = Tool::randomInArray($phoneNumberPool);
-				}
-				else {
-					$phone->NUMBER = $phoneNumberPool[$j];
-				}
+				$targetPhoneArr[] = $phone->NUMBER = $phoneNumberPool[$j];
 				$userInfo->Phone[] = $phone;
 				
-				$homeNumberTemp = '';
-				if (Tool::randomPercentage() < 0.2*0.8*0.3) {
-					$homeNumberTemp = Tool::randomInArray($homeNumberPool);
-				}
-				else {
-					$homeNumberTemp = $homeNumberPool[$j];
-				}
+				$homeNumberTemp = $homeNumberPool[$j];
 
 				$email = $user->createEmail();
 				$email->TYPE = $originalUserInfo->Email[0]->TYPE;
-				if (Tool::randomPercentage() < 0.2*0.2) {
-					$email->ADDRESS = Tool::randomInArray($emailPool);
-				}
-				else {
-					$email->ADDRESS= $emailPool[$j];
-				}
+				$email->ADDRESS= $emailPool[$j];
 				$userInfo->Email[] = $email;
 
 				//HOME PHONE 70%有电话
@@ -286,19 +276,110 @@
 				$userInfo->Im[] = $Im;
 
 				$targetUsers[] = $userInfo;
+
+				if(Tool::randomPercentage() < 0.02) {
+					$repeatUserInfo = $user->createUserInfo();
+					$phone = $user->createPhone();
+					$phone->TYPE = 2;
+					$repeatUserInfo->Phone[] = $phone;
+
+					$phone2 = $user->createPhone();
+					$phone2->TYPE = 1;
+					$repeatUserInfo->Phone[] = $phone2;
+
+					$email = $user->createEmail();
+					$email->TYPE = $userInfo->Email[0]->TYPE;
+					$repeatUserInfo->Email[] = $email;
+					
+					$Im = $user->createIm();
+					$Im->PROTOCOL = 4;
+					$Im->TYPE = 4;
+					$repeatUserInfo->Im[] = $Im;
+
+					$this->setId($repeatUserInfo, $userInfo->id+1);
+					$rules = array(array(1, 1, 1, 0), 
+								array(0, 1, 1, 0), 
+								array(0, 1, 1, 1), 
+								array(0, 0, 1, 1),
+								array(0, 1, 0, 1));
+					$rule = Tool::randomInArray($rules);
+
+					if ($rule[0]) {
+						$this->setName($repeatUserInfo, $this->getName($userInfo));
+					}else {
+						$this->setName($repeatUserInfo, Tool::randomInArray($namePool));
+					}
+					if ($rule[1]) {
+						$this->setMobilePhone($repeatUserInfo, $this->getMobilePhone($userInfo));
+					}else {
+						$this->setMobilePhone($repeatUserInfo, Tool::randomInArray($phoneNumberPool));
+					}
+					if ($rule[2]) {
+						$this->setHomePhone($repeatUserInfo, $this->getHomePhone($userInfo));
+					}else {
+						$this->setHomePhone($repeatUserInfo, Tool::randomInArray($homeNumberPool));
+					}
+					if ($rule[3]) {
+						$this->setEmail($repeatUserInfo, $this->getEmail($userInfo));
+					}else {
+						$this->setEmail($repeatUserInfo, Tool::randomInArray($emailPool));
+					}
+
+					$targetNameArr[] = $this->getName($repeatUserInfo);
+					$targetPhoneArr[] = $this->getMobilePhone($repeatUserInfo);
+					$targetUsers[] = $repeatUserInfo;
+
+					$j++;
+				}
 			}
-			//伪造一个所有信息都重复的用户
-			$repeatUserInfo = clone $userInfo;
-			$repeatUserInfo->id++;
-			$targetUsers[] = $repeatUserInfo;
+
 			$result = new stdClass;
 			$result->targetUsers = $targetUsers;
-			$result->phoneNumberPool = $phoneNumberPool;
-			$result->namePool = $namePool;
+
+			$result->phoneNumberPool = $targetPhoneArr;
+			$result->namePool = $targetNameArr;
 
 			return $result;
 		}
 		
+		function randomRepeatUser($id, $userInfo, &$repeatUserInfo, $namePool, $phoneNumberPool, $homeNumberPool, $emailPool) {
+			$user = new User();
+
+			$phone = $user->createPhone();
+			$phone->TYPE = 2;
+			$repeatUserInfo->Phone[] = $phone;
+
+			$phone2 = $user->createPhone();
+			$phone2->TYPE = 1;
+			$repeatUserInfo->Phone[] = $phone2;
+
+			$email = $user->createEmail();
+			$email->TYPE = $userInfo->Email[0]->TYPE;
+			$repeatUserInfo->Email[] = $email;
+			
+			$Im = $user->createIm();
+			$Im->PROTOCOL = 4;
+			$Im->TYPE = 4;
+			$repeatUserInfo->Im[] = $Im;
+
+
+			$this->setId($repeatUserInfo, $id);
+			$this->setName($repeatUserInfo, $this->getName($userInfo));
+			$this->setMobilePhone($repeatUserInfo, $this->getMobilePhone($userInfo));
+			$this->setHomePhone($repeatUserInfo, $this->getHomePhone($userInfo));
+			$this->setEmail($repeatUserInfo, $this->getEmail($userInfo));
+			$this->setQQ($repeatUserInfo, $this->getQQ($userInfo));
+		}
+
+		function repeatEleInArr(&$arr, $repeatWeight) {
+			$totalLength = count($arr);
+			$base = $totalLength - round($totalLength * $repeatWeight);
+			$newArr = array_slice($arr, 0, $base);
+			for ($i = $base; $i < $totalLength; $i++) {
+				$arr[$i] = Tool::randomInArray($newArr);
+			}
+			shuffle($arr);
+		}
 		//合并指数
 		function calContactMergeWeight($contacts) {
 			$targetContacts = $this->mergeFilterResult($contacts);			
@@ -391,16 +472,28 @@
 			//0为无关，1为推荐合并，2为需要合并
 			$weightType = 0;
 			$sign1 = $sign2 = $sign3 = $sign4 = $sign5 = false;
-			if($this->getName($contact1) != '' && $this->getName($contact1) == $this->getName($contact2))
+			$sameInfoCount = 0;
+			if($this->getName($contact1) != '' && $this->getName($contact1) == $this->getName($contact2)) {
 				$sign1 = true;
-			if($this->getMobilePhone($contact1) != '' && $this->getMobilePhone($contact1) == $this->getMobilePhone($contact2))
+				$sameInfoCount++;
+			}
+			if($this->getMobilePhone($contact1) != '' && $this->getMobilePhone($contact1) == $this->getMobilePhone($contact2)) {
 				$sign2 = true;
-			if($this->getHomePhone($contact1) != '' && $this->getHomePhone($contact1) == $this->getHomePhone($contact2))
+				$sameInfoCount++;
+			}
+			if($this->getHomePhone($contact1) != '' && $this->getHomePhone($contact1) == $this->getHomePhone($contact2)) {
 				$sign3 = true;
-			if($this->getQQ($contact1) != '' && $this->getQQ($contact1) == $this->getQQ($contact2))
+				$sameInfoCount++;
+			}
+			if($this->getQQ($contact1) != '' && $this->getQQ($contact1) == $this->getQQ($contact2)) {
 				$sign4 = true;
-			if($this->getEmail($contact1) != '' && $this->getEmail($contact1) == $this->getEmail($contact2))
+				$sameInfoCount++;
+			}
+			if($this->getEmail($contact1) != '' && $this->getEmail($contact1) == $this->getEmail($contact2)) {
 				$sign5 = true;
+				$sameInfoCount++;
+			}
+				
 			if($sign1 || $sign2 || $sign3 || $sign4 || $sign5)
 				$weightType = 1;
 			if($this->getName($contact1) == $this->getName($contact2) && 
@@ -409,6 +502,9 @@
 			$this->getQQ($contact1) == $this->getQQ($contact2) && 
 			$this->getEmail($contact1) == $this->getEmail($contact2))
 				$weightType = 2;
+			if ($sameInfoCount >= 2) {
+				$weightType = 2;
+			}	
 
 			return $weightType;
 		}
@@ -434,6 +530,10 @@
 			return $contact->id;
 		}
 
+		function setId(&$contact, $val) {
+			return $contact->id = $val;
+		}
+
 		function getWeight($stdClass) {
 			return $stdClass->weight;
 		}
@@ -442,20 +542,40 @@
 			return $contact->StructuredName->DISPLAY_NAME;
 		}
 
+		function setName(&$contact, $val) {
+			return $contact->StructuredName->DISPLAY_NAME = $val;
+		}
+
 		function getMobilePhone($contact) {
 			return $contact->Phone[0]->NUMBER;
+		}
+
+		function setMobilePhone(&$contact, $val) {
+			return $contact->Phone[0]->NUMBER = $val;
 		}
 
 		function getHomePhone($contact) {
 			return $contact->Phone[1]->NUMBER;
 		}
 
+		function setHomePhone(&$contact, $val) {
+			return $contact->Phone[1]->NUMBER = $val;
+		}
+
 		function getQQ($contact) {
 			return $contact->Im[0]->DATA;
 		}
 
+		function setQQ(&$contact, $val) {
+			return $contact->Im[0]->DATA = $val;
+		}
+
 		function getEmail($contact) {
 			return $contact->Email[0]->ADDRESS;
+		}
+
+		function setEmail(&$contact, $val) {
+			return $contact->Email[0]->ADDRESS = $val;
 		}
 
 		function createCallLog(&$callLogs, $numberArr, $nameArr, $freq) {
