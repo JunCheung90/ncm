@@ -63,7 +63,7 @@ thead th.descend {
 }
 
 .mergeTable tbody tr:nth-child(2n) td {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #666;
 }
 
 .mergeTable tbody tr:nth-child(2n) td:first-child  {

@@ -13,7 +13,7 @@
   //高亮合并表格
   var rows = $('.mergeTable>tbody>tr');
   for (var i=1; i<6; i++) {
-    HighLight.highlightSameRow(rows, i,1);
+    HighLight.highlightSameRow(rows, i, 1, true);
   }
   
   var totalRows = $('.mergeTable>tbody>tr');

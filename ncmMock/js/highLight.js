@@ -10,12 +10,14 @@ HighLight.removeHighlight = function (rows) {
   }
 }
 
-HighLight.highlightSameRow = function (rows, column, offset) {
+HighLight.highlightSameRow = function (rows, column, offset, jumpFlag) {
   for (var i=0; i<rows.length-1; i++) {
     if (HighLight.getCellValue(rows[i], column) != '' && HighLight.getCellValue(rows[i], column) == HighLight.getCellValue(rows[i+1], column)) {
       HighLight.hightlightCell(rows[i], column, offset);
       HighLight.hightlightCell(rows[i+1], column, offset);
     }
+    if (jumpFlag)
+      i++;
   }
 }
 

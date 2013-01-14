@@ -157,7 +157,7 @@
                         $highMergeNum++;
                       if ($weight == 1)
                         $lowMergeNum++;
-                      $nameArr = ['王青', '向帆', '王浩', '万伟祥', '方慧', '黄东敏', '黄泽腾', '陈伯冰', '何盈', '张杰军', '刘日辉', '徐总', '向董', '王老师', 'YoYo兔','徐总','徐总'];
+                      $nameArr = array('王青', '向帆', '王浩', '万伟祥', '方慧', '黄东敏', '黄泽腾', '陈伯冰', '何盈', '张杰军', '刘日辉', '徐总', '向董', '王老师', 'YoYo兔','徐总','徐总');
                       $name1 = Tool::randomPercentage() < 0.4 ? Tool::randomInArray($nameArr) : $story->getName($contact1);
                       $name2 = Tool::randomPercentage() < 0.3 ? Tool::randomInArray($nameArr) : $story->getName($contact2);
                   ?>

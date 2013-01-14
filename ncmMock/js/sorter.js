@@ -120,8 +120,8 @@ function sortTableInOrder(table, column, isAscend){
     sortRows(rows, column, isAscend);
     //applyAlternativeClass(rows);
     HighLight.removeHighlight(rows);
-    if (column > 1) {
-        HighLight.highlightSameRow(rows, column, 2);
+    if (column > 0) {
+        HighLight.highlightSameRow(rows, column, 2, false);
     }
     appendRows(table, rows);
 

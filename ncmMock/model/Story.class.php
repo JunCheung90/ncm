@@ -11,7 +11,7 @@
 		
 		function __construct() {
 			$this->userIdLower = 10000;
-			$this->userIdUpper = 11020;
+			$this->userIdUpper = 10220;
 			$this->userTotal = $this->userIdUpper - $this->userIdLower;
 		}
 
@@ -437,12 +437,13 @@
 		}
 
 		function compareFunction($getFuntion) {
-			return function ($x, $y) use ($getFuntion) {
-				if ($this->$getFuntion($x) == $this->$getFuntion($y))
+			$that = $this;
+			return function ($x, $y) use ($getFuntion, $that) {
+				if ($that->$getFuntion($x) == $that->$getFuntion($y))
 				  return 0;
-				else if ($this->$getFuntion($x) > $this->$getFuntion($y))
+				else if ($that->$getFuntion($x) > $that->$getFuntion($y))
 				  return -1;
-				else if ($this->$getFuntion($x) < $this->$getFuntion($y))
+				else if ($that->$getFuntion($x) < $that->$getFuntion($y))
 				  return 1;
 			};
 		}
