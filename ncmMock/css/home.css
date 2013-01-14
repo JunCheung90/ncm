@@ -1,0 +1,134 @@
+﻿.userInfo {
+    height: 110px;
+    position: relative;
+    margin-bottom: 25px;
+}
+.userInfo .avatar {
+    position: absolute;
+    height: 110px;
+    width: 110px;
+}
+.userInfoDetail {
+    margin-left: 120px;
+}
+.userInfoDetail .name {
+  color: #333;
+  font-size: 18px;
+  font-weight: bold;
+}
+.userInfoDetail > p {
+  margin: 0 0 5px;
+}
+.edit-avatar {
+  position: absolute;
+  left: 120px;
+  bottom: 0;
+}
+.nav-pills > li {
+    position: relative;
+}
+.nav-pills > li > a {
+  font-family: Arial, 'Microsoft YaHei';
+  border-radius: 0;
+}
+.graph .nav-pills > li > a, .graph .nav-pills > li > a:hover {
+    background-color: #999999;
+    color: #FFFFFF;
+}
+.graph .nav-pills > .active > a, .graph .nav-pills > .active > a:hover {
+    background-color: #14B2AE;
+    color: #FFFFFF;
+}
+.graph .active .cusp1 {
+  left:40%;
+  bottom:-7px;
+  border-bottom:0px;
+  border-top:9px solid #14B2AE;
+  border-right:9px solid #FAFAFA;
+  border-left:9px solid #FAFAFA;
+}
+.graph .tab-content {
+    box-shadow: 0px -3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.row-fluid .span8, 
+.row-fluid .span4 {
+  margin: 0;
+}
+.widget {
+  background-color: #FFFFFF;
+  margin-right: 30px;
+  margin-bottom: 5px;
+  border: 1px solid #ccccce;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 12px;
+}
+.widget header {
+  border-bottom: 1px solid #999999;
+  padding-bottom: 3px;
+}
+.widget header h1 {
+  color: #333;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 24px;
+}
+.time {
+  font-family: "lcddregular";
+  font-size: 48px;
+  line-height: 120%;
+  text-align: center;
+}
+.totalDuration p {
+  margin: 40px 0 40px;
+}
+.meanDuration .tab-content .time {
+  font-size: 32px;
+  vertical-align: middle;
+}
+.meanDuration .tab-content {
+  padding-top: 7px;
+  border: 2px solid #ccc;
+}
+.meanDuration .tabbable {
+  margin-top: 30px;
+}
+.meanDuration .nav {
+  margin-bottom: 12px;
+}
+.meanDuration .nav-pills > li > a, .meanDuration .nav-pills > li > a:hover {
+    padding: 3px;
+    background-color: #CCCCCC;
+    color: #FFFFFF;
+}
+.meanDuration .nav-pills > .active > a, .meanDuration .nav-pills > .active > a:hover {
+    background-color: #E5004F;
+    color: #FFFFFF;
+}
+.meanDuration .active .cusp1 {
+  left:22px;
+  bottom:-4px;
+  border-bottom:0px;
+  border-top:5px solid #E5004F;
+  border-right:5px solid #ffffff;
+  border-left:5px solid #ffffff;
+}
+span.icon {
+  display: inline-block;
+  overflow: hidden;
+  background: url(../img/index/icon.png) no-repeat;
+  vertical-align: bottom;
+}
+.aboutMe .icon {
+  background-position: 0 0; width: 26px; height: 24px; 
+}
+.aboutMe p {
+  text-indent: 2em;
+}
+.totalDuration .icon {
+  background-position: 0 -74px; width: 26px; height: 24px; 
+}
+.meanDuration .icon {
+  background-position: 0 -148px; width: 26px; height: 22px;
+}

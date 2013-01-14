@@ -1,0 +1,155 @@
+.navbar .cusp1 {
+    left: 490px;
+}
+.sortTable thead {
+    cursor: pointer;
+}
+/* START:core_styles */
+thead th.ascend, thead th.descend {
+    background: #ccc url('../img/ascend.gif') no-repeat right center;
+}
+thead th.descend {
+    background-image: url('../img/descend.gif');
+}
+/* END:core_styles */
+.colorBlock {
+  display: inline-block;
+  height: 25px;
+  width: 60px;
+  margin-right: 10px;
+  text-align: center;
+  vertical-align: center;
+}
+.red {
+  background-color: #F2DEDE !important;
+}
+/*.green {
+  background-color: #DFF0D8 !important;
+}*/
+.blue {
+  background-color: #D9EDF7 !important;
+}
+.yellow {
+  background-color: #FCF8E3 !important;
+}
+.weight1 {
+  background-color: #83B4E7 !important;
+}
+.weight2 {
+  background-color: #0064cd !important;
+}
+
+/*.weight2 {
+  background-color: #D9E8F8 !important;
+}
+.weight4 {
+  background-color: #A8CAEE !important;
+}
+.weight6 {
+  background-color: #83B4E7 !important;
+}
+.weight8 {
+  background-color: #5D9CDF !important;
+}
+.weight10 {
+  background-color: #3182D7 !important;
+}
+.weight12 {
+  background-color: #0064cd !important;
+}
+*/
+.mergeTable tbody tr:hover td {
+  background-color: white;
+}
+
+.mergeTable tbody tr:nth-child(2n) td {
+  border-bottom: 1px solid black;
+}
+
+.mergeTable tbody tr:nth-child(2n) td:first-child  {
+  border-top: 0px ;
+}
+
+.colorWeight {
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.ui-widget-content {
+  background-color: #0064CD;
+  
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#fff), to(#0064cd));
+  background-image: -moz-linear-gradient(left, #fff, #0064cd);
+  background-image: -ms-linear-gradient(left, #fff, #0064cd);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fff), color-stop(100%, #0064cd));
+  background-image: -webkit-linear-gradient(left, #fff, #0064cd);
+  background-image: -o-linear-gradient(left, #fff, #0064cd);
+  background-image: linear-gradient(left, #fff, #0064cd);
+}
+/*
+.ui-slider a.ui-slider-handle, .ui-slider a.ui-slider-handle:hover{
+  cursor: move;
+} */
+
+.mergeWeightSlider {
+  float: right;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+.ui-slider .ui-slider-range {
+  background: none;
+  background-image: none;
+}
+#slider-horizontal {
+  width: 150px; 
+}
+.mergeWeightSlider .text {
+  margin-top: 10px;
+}
+.table-bordered {
+    border-collapse: collapse;
+}
+.hide {
+  text-indent: -999px;
+}
+.stat-info {
+  position: relative;
+  height: 140px;
+  background: url('../img/contact/rabbit.png') top left no-repeat;
+}
+.stat-info p {
+  position: absolute;
+  left: 130px;
+  top: 45px;
+}
+.stat-info p span {
+  color: #18C4C4;
+}
+.contact-table {
+  border: 1px solid #EFEFEF;
+  border-radius: 5px;
+  padding: 10px;
+}
+.button-group .btn {
+  width: 120px;
+}
+.table {
+  margin-top: 20px;
+}
+.table, .table td, .table th {
+  font-family: Arial, 'Microsoft YaHei';
+  font-size: 12px;
+  text-align: center;
+}
+.table th {
+  font-size: 11px;
+  font-weight: normal;
+  background-color: #EEEEEE;
+  border-right: 1px solid #DDDDDD;
+}
+.table th {
+  padding: 4px;
+}
+.green {
+  color: #0099cc !important;
+}
