@@ -28,8 +28,6 @@ div.button span i {
 .navbar {
     height: 73px;
     margin-bottom: 0;
-    border-bottom: #D7D7D7 solid 9px;
-    position: relative;
 }
 .cusp1 {
     position:absolute;
@@ -41,19 +39,19 @@ div.button span i {
   bottom:0px;
   border-top:0px;
   border-bottom:12px solid #D7D7D7;
-  border-right:6px solid #fff;
-  border-left:6px solid #fff;
+  border-right:6px solid #1b416c;
+  border-left:6px solid #1b416c;
 }
 .littleAvatar {
   height: 27px;
   width: 27px;
 }
 .navbar .navbar-inner {
-    background: none repeat scroll 0 0 #FFFFFF;
+    background: none repeat scroll 0 0 #1b416c;
     border-radius: 0 0 0 0;
     box-shadow: none;
     text-shadow: none;
-    padding: 10px 0;
+    padding: 5px 0 0 0;
 }
 .navbar .nav > li > a {
     font-size: 13px;
@@ -75,14 +73,14 @@ div.button span i {
   border-bottom-color: #666;
 }
 .dropdown-menu li > a:hover, .dropdown-menu .active > a, .dropdown-menu .active > a:hover {
-    background-color: #18C4C4;
+    background-color: #1b416c;
 }
 .navbar .nav > li > a:hover {
     color: #666;
 }
 .navbar .nav .active > a, .navbar .nav .active > a:hover {
-    color: #18C4C4;
-    background-color: #FFFFFF;
+    color: #6DB8FD;
+    background-color: #1b416c;
 }
 .navbar .container-fluid {
     width: 900px;
@@ -92,7 +90,6 @@ div.button span i {
 }
 .brand img {
     padding: 0 10px;
-    width: 159px;
     vertical-align: bottom;
 }
 .navbar .brand {
@@ -107,7 +104,8 @@ div.button span i {
     padding: 0 0;
 }
 .home {
-    background: #EBEBEB url('../img/index/background.png') left 82px repeat-x;
+    /*background: #EBEBEB url('../img/index/background.png') left 82px repeat-x;*/
+	background: #EBEBEB;
 }
 .container {
     color: #666;
@@ -116,34 +114,35 @@ div.button span i {
     border-right: 1px solid #ccccce;
     background-color: #FAFAFA;
     font-size: 14px;
+	margin-top: 60px;
 }
 #content {
     padding: 18px 28px;
 }
 .btn-green {
-    background-color: #14B2AE;
+    background-color: #1b416c;
     /* IE10 */
-    background-image: -ms-linear-gradient(top, #12D3D1 0%, #14B2AE 100%);
+    background-image: -ms-linear-gradient(top, #2162A2 0%, #1b416c 100%);
 
     /* Mozilla Firefox */
-    background-image: -moz-linear-gradient(top, #12D3D1 0%, #14B2AE 100%);
+    background-image: -moz-linear-gradient(top, #2162A2 0%, #1b416c 100%);
 
     /* Opera */
-    background-image: -o-linear-gradient(top, #12D3D1 0%, #14B2AE 100%);
+    background-image: -o-linear-gradient(top, #2162A2 0%, #1b416c 100%);
 
     /* Webkit (Safari/Chrome 10) */
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #12D3D1), color-stop(1, #14B2AE));
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #2162A2), color-stop(1, #1b416c));
 
     /* Webkit (Chrome 11+) */
-    background-image: -webkit-linear-gradient(top, #12D3D1 0%, #14B2AE 100%);
+    background-image: -webkit-linear-gradient(top, #2162A2 0%, #1b416c 100%);
 
     /* Proposed W3C Markup */
-    background-image: linear-gradient(top, #12D3D1 0%, #14B2AE 100%);
+    background-image: linear-gradient(top, #2162A2 0%, #1b416c 100%);
 
     border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
 }
 .btn-green:active, .btn-green:hover {
-    background-color: #14B2AE;
+    background-color: #1b416c;
 }
 .hidden {
   visibility: inherit;

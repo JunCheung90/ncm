@@ -80,7 +80,7 @@
   
 </head>
 <body class="home">
-  <div class="navbar">
+  <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container-fluid">
         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -92,22 +92,21 @@
         <a class="brand" href="index.html"><img src="img/index/logo.png" alt="logo" title="logo" /></a>
         <div class="nav-collapse">
           <ul class="nav">
-            <li class="active"><a href="#">我的主页</a></li>
-            <li><a href="contact.php">联系人</a></li>
+            <li><a href="contact.php">联系人管理</a></li>
+            <li class="active"><a href="#">趣味分析</a></li>
             <li><a href="#">其他</a></li>
           </ul>
           <ul class="nav pull-right" >
             <li class="">
               <a href="#" class="userName">
-                 <img src="img/index/doudou.png" alt="avatar" title="avatar" class="littleAvatar" />
-                 豆豆
+                 <img src="img/index/jixiang.png" alt="avatar" title="avatar" class="littleAvatar" />
+                 万伟祥
               </a>
             </li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
-    <span class="cusp1"></span>
   </div><!--/.navbar -->
 
   <div class="container">
@@ -115,10 +114,10 @@
    
         <div id="content">
           <section class="userInfo">
-            <img src="img/index/doudou.png" class="avatar" alt="avatar" title="avatar" />
+            <img src="img/index/jixiang.png" class="avatar" alt="avatar" title="avatar" />
             <div class="userInfoDetail">
               <p>
-                <span class="name">豆豆</span>
+                <span class="name">万伟祥</span>
               </p>
               <p>
                 <span class="gender">男</span>

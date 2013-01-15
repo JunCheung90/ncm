@@ -86,7 +86,7 @@
   
 </head>
 <body class="home">
-  <div class="navbar">
+  <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container-fluid">
         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -98,22 +98,21 @@
         <a class="brand" href="index.html"><img src="img/index/logo.png" alt="logo" title="logo" /></a>
         <div class="nav-collapse">
           <ul class="nav">
-            <li><a href="show.php">我的主页</a></li>
-            <li class="active"><a href="#">联系人</a></li>
+            <li class="active"><a href="#">联系人管理</a></li>
+            <li><a href="show.php">趣味分析</a></li>
             <li><a href="#">其他</a></li>
           </ul>
           <ul class="nav pull-right" >
             <li class="">
               <a href="#" class="userName">
-                 <img src="img/index/doudou.png" alt="avatar" title="avatar" class="littleAvatar" />
-                 豆豆
+                 <img src="img/index/jixiang.png" alt="avatar" title="avatar" class="littleAvatar" />
+                 万伟祥
               </a>
             </li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
-    <span class="cusp1"></span>
   </div><!--/.navbar -->
 
   <div class="container">
@@ -121,14 +120,14 @@
    
         <div id="content">
           <section class="stat-info">
-            <p class="info0 ">豆豆，在你的<span><?=$contactsNum?></span>个联系人里有<span><?= $highMergeNum ?></span>个是同一个人哦!</p>
+            <p class="info0 ">万伟祥，在你的<span><?=$contactsNum?></span>个联系人里有<span><?= $highMergeNum ?></span>个是同一个人哦!</p>
             <p class="info1 hidden">再找找下面的<span><?= $lowMergeNum ?></span>个人，或许是重复的呢!</p>
             <p class="info2 hidden">嘻嘻，这就是你的全部<span><?=$contactsNum?></span>个联系人</p>
           </section>
 
           <section class="contact-table">
             <div class="button-group">
-              <button class="btn btn-success btn-green">重复联系人</button>
+              <button class="btn btn-success btn-green">疑似重复</button>
               <button class="btn">部分信息重复</button>
               <button class="btn">全部联系人</button>
             </div>  
@@ -157,7 +156,7 @@
                         $highMergeNum++;
                       if ($weight == 1)
                         $lowMergeNum++;
-                      $nameArr = array('王青', '向帆', '王浩', '万伟祥', '方慧', '黄东敏', '黄泽腾', '陈伯冰', '何盈', '张杰军', '刘日辉', '徐总', '向董', '王老师', 'YoYo兔','徐总','徐总');
+                      $nameArr = array('王青', '向帆', '王浩', '方慧', '黄东敏', '黄泽腾', '陈伯冰', '何盈', '张杰军', '刘日辉', '许总', '向董', '王老师', 'YoYo兔','许亮','许总', '刘总','刘总');
                       $name1 = Tool::randomPercentage() < 0.4 ? Tool::randomInArray($nameArr) : $story->getName($contact1);
                       $name2 = Tool::randomPercentage() < 0.3 ? Tool::randomInArray($nameArr) : $story->getName($contact2);
                   ?>

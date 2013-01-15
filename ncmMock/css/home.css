@@ -36,14 +36,14 @@
     color: #FFFFFF;
 }
 .graph .nav-pills > .active > a, .graph .nav-pills > .active > a:hover {
-    background-color: #14B2AE;
+    background-color: #1b416c;
     color: #FFFFFF;
 }
 .graph .active .cusp1 {
   left:40%;
   bottom:-7px;
   border-bottom:0px;
-  border-top:9px solid #14B2AE;
+  border-top:9px solid #1b416c;
   border-right:9px solid #FAFAFA;
   border-left:9px solid #FAFAFA;
 }

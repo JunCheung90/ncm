@@ -233,10 +233,10 @@
 				$emailPool[] = $userInfoTmp->Email[0]->ADDRESS;
 			}
 			//重复信息
-			$this->repeatEleInArr($namePool, 0.05*0.05);
-			$this->repeatEleInArr($phoneNumberPool, 0.05*0.75*0.7);
-			$this->repeatEleInArr($homeNumberPool, 0.05*0.75*0.3);
-			$this->repeatEleInArr($emailPool, 0.05*0.2);
+			$this->repeatEleInArr($namePool, 0.1*0.05);
+			$this->repeatEleInArr($phoneNumberPool, 0.1*0.75*0.7);
+			$this->repeatEleInArr($homeNumberPool, 0.1*0.75*0.3);
+			$this->repeatEleInArr($emailPool, 0.1*0.2);
 
 			//target user pool
 			$targetUsers = array();
@@ -277,7 +277,7 @@
 
 				$targetUsers[] = $userInfo;
 
-				if(Tool::randomPercentage() < 0.02) {
+				if($j < 9) {
 					$repeatUserInfo = $user->createUserInfo();
 					$phone = $user->createPhone();
 					$phone->TYPE = 2;

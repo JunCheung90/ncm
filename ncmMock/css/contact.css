@@ -58,7 +58,7 @@ thead th.descend {
   background-color: #0064cd !important;
 }
 */
-.mergeTable tbody tr:hover td {
+table {
   background-color: white;
 }
 
