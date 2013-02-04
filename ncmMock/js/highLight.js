@@ -46,7 +46,7 @@ HighLight.hightlightCell = function (row, column, offset) {
       break;        
   }
   //$(tds[column]).addClass(classNameArr[classNameIndex]);
-  $(tds[column]).addClass("green");
+  $(tds[column]).addClass("highlight");
 }
 
 HighLight.getCellValue = function (row, column){

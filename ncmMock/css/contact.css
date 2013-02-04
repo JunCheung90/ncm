@@ -67,7 +67,7 @@ table {
 }
 
 .mergeTable tbody tr:nth-child(2n) td:first-child  {
-  border-top: 0px ;
+  border-top: 0;
 }
 
 .colorWeight {
@@ -150,6 +150,19 @@ table {
 .table th {
   padding: 4px;
 }
+.highlight {
+  color: #1B416C !important;
+  background-color: #D9EDF7 !important;
+}
 .green {
-  color: #0099cc !important;
+  background-color: #DFF0D8 !important;
+}
+.red {
+  background-color: #F2DEDE !important;
+}
+.yellow {
+  background-color: #FCF8E3 !important;
+}
+.blue {
+  background-color: #D9EDF7 !important;
 }

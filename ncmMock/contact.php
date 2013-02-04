@@ -100,7 +100,6 @@
           <ul class="nav">
             <li class="active"><a href="#">联系人管理</a></li>
             <li><a href="show.php">趣味分析</a></li>
-            <li><a href="#">其他</a></li>
           </ul>
           <ul class="nav pull-right" >
             <li class="">
@@ -120,7 +119,7 @@
    
         <div id="content">
           <section class="stat-info">
-            <p class="info0 ">万伟祥，在你的<span><?=$contactsNum?></span>个联系人里有<span><?= $highMergeNum ?></span>个是同一个人哦!</p>
+            <p class="info0 ">万伟祥，在你的<span><?=$contactsNum?></span>个联系人里有<span><?= $highMergeNum ?></span>个很可能是重复的哦!</p>
             <p class="info1 hidden">再找找下面的<span><?= $lowMergeNum ?></span>个人，或许是重复的呢!</p>
             <p class="info2 hidden">嘻嘻，这就是你的全部<span><?=$contactsNum?></span>个联系人</p>
           </section>

@@ -94,7 +94,6 @@
           <ul class="nav">
             <li><a href="contact.php">联系人管理</a></li>
             <li class="active"><a href="#">趣味分析</a></li>
-            <li><a href="#">其他</a></li>
           </ul>
           <ul class="nav pull-right" >
             <li class="">

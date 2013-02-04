@@ -19,6 +19,7 @@
 			$result = new stdClass;
 			$tempResult = $this->createUser();
 			$result->Contacts = $tempResult->targetUsers;
+			//$result->ContactTotal = count($tempResult->targetUsers);
 			$phoneNumberPool = $tempResult->phoneNumberPool;
 			$namePool = $tempResult->namePool;
 
@@ -31,6 +32,7 @@
 			$this->createCallLog($callLogs, $freqNumbers, $freqNames, 5);
 			$this->createCallLog($callLogs, $rareNumbers, $rareNames, 1);
 			$result->CallLogs = $callLogs;
+			//$result->CallLogTotal = count($callLogs);
 			$result->MergeWeight = $this->calContactMergeWeight($result->Contacts);
 			return $result;
 		}
