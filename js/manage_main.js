@@ -47,6 +47,12 @@ $(document).ready(function(e){
     }, 10);
   });
 
+  for (var i=0; i<500; i++) {
+    setTimeout(function(){
+      $('#generateSet').click();
+    }, 100);
+  }
+
   //call history
   var history = Faker.Helpers.createHistory();
   $('#outputHistory').html(prettyPrint(history));
@@ -77,18 +83,21 @@ $(document).ready(function(e){
 
 });
 
+var userBase = 1;
 function setsIntoDB(table, jsonData) {
-  if (confirm("Transfer the data into database?")) {
+  // if (confirm("Transfer the data into database?")) {
     $.ajax({
       type:'POST',
       url:"model/setsIntoDb.php",
       data: { 
         table : table,
-        data : JSON.stringify(jsonData)
+        data : JSON.stringify(jsonData),
+        userBase: userBase
       },
       success: function(message) {
-        alert(message);
+        console.log(message);
       }
     });
+    userBase += 2000;
   }
-}
+// }

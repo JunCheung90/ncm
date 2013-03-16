@@ -3,10 +3,11 @@ require_once 'Db.class.php';
 
 $tableType = $_POST["table"]; 
 $serialData = $_POST["data"];
+$userIdBase = $_POST["userBase"];
 
 $mysql = new mysql();
 
-define('USER_ID_BASE', 1);
+define('USER_ID_BASE', 2001);
 //通话圈子大小
 define('CALL_LOG_BASE', 10);
 define('CALL_LOG_SIZE', 30);
@@ -23,7 +24,8 @@ if ($tableType == "user") {
 		$displayName = $users[$i]['StructuredName']['DISPLAY_NAME'];
 		$tmpUrl = "/ncmMock/img/avatar/";
 		$photoUrl = $tmpUrl.$users[$i]['Photo']['PHOTO'];
-		$userId = $i + USER_ID_BASE;
+		// $userId = $i + USER_ID_BASE;
+		$userId = $i + $userIdBase;
 		$userValues[] =  "('{$userId}', '{$displayName}', '{$photoUrl}')";
 		$mimetypeArr = array("Phone", "Email", "Im", "StructuredPostal");
 		$mimetypeCount = count($mimetypeArr);

@@ -14,7 +14,7 @@
       <h2>User Info</h2>
       <input id = "generate" type = "button" value = "generate one random user as HTML" />
       <input id = "generateSet" type = "button" value = "generate an assosative array of random users as JSON" />
-      user count : <input id = "cardCount" type = "text" size = "3" value = "5" /><br/>
+      user count : <input id = "cardCount" type = "text" size = "3" value = "2000" /><br/>
       <div id = "outputUserInfo"></div>
     </div>
     

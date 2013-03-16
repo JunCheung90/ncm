@@ -80,6 +80,35 @@ Faker.Helpers.createUser = function (){
   };
 };
 
+Faker.Helpers.createYoYoUser = function () {
+  return {
+    "name":Faker.Name.findNameCn(),
+    "phones": [{
+      //MOBILE_PHONE
+      "phoneNumber":Faker.PhoneNumber.phoneNumber(),
+      "isActive":true
+    }],
+    "emails": [
+      Faker.Internet.email()
+    ],
+    "ims": [{
+        "type": "QQ",
+        "account": Faker.Internet.qq(),
+        "isActive": true
+    }],
+    "sn": [{
+      "type": Faker.Internet.snType(),
+      "accountName": Faker.Internet.userName(),
+      "accountId": Faker.Internet.qq(),
+      "appKey": null
+    }],
+    "addresses": [
+      Faker.Address.streetAddress(true)
+    ],
+    "tags": null
+  };
+};
+
 Faker.Helpers.createAndroidUser = function (){
   return {
     "StructuredName": {

@@ -33,13 +33,23 @@
 			Header("Location: show.php");
 		}
 		
-		private function us1() {
+		private function us1_old() {
 			if($this->get_request_method() != "GET"){
 				$this->response('',406);
 			}
 
 			$story = new Story();
 			$result = $story->userStory1();
+			$this->response(Tool::json($result), 200);
+		}
+
+		private function us1() {
+			if($this->get_request_method() != "GET"){
+				$this->response('',406);
+			}
+
+			$story = new Story();
+			$result = $story->us1New();
 			$this->response(Tool::json($result), 200);
 		}
 
